@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" type="text/css" href="\css\style.css">
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+  <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+ 
+</head>
+<body onload="fetch();">
+
+<nav class="navbar navbar-expand-lg p-3 nav_style">
+  <a class="navbar-brand pl-5" href="#" >COVID-19</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto pr-5 text-capitalize">
+      <li class="nav-item active">
+        <a class="nav-link" href="C:/Covid%20Resources/index.html#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link" href="#aboutid">about</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#sympid">symptoms</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#preventid">prevention</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#contactid">contact</a>
+      </li> -->
+	  <li class="nav-item">
+        <a class="nav-link" href="C:\Covid Resources\vaccine\index.html" target="_blank" >Vactination</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link" href="#worldlive">World Live</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link" href="#indialive">India Live</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!--application will start-->
+
+
+	<section class="corona_update" >
+		<div class="mb-3">
+			<h2 class="text-center text-uppercase mt-5"> <b>Covid 19 Live Updates Of the World</b> </h2>
+		</div>
+
+       <div class="table-responsive" style="padding: 2% 10% 0% 10% ;" >
+       	 <table class="table table-bordered table-striped text-center" id="tval">
+
+	       	 	<tr >
+	       	 		<th>Country</th>
+	       	 		<th>TotalConfirmed</th>
+	       	 		<th>TotalRecoverd</th>
+	       	 		<th>TotalDeaths</th>
+	       	 		<th>NewRecovered</th>
+	       	 		<th>NewDeaths</th>
+	       	 	</tr>
+
+	       	 	<?php
+
+                 $data = file_get_contents('https://api.covid19api.com/summary');
+
+                 $coronalive = json_decode($data,true);
+
+                 
+                 
+	       	 	?>
+	       	 	<script type="text/javascript">
+	       	 		function fetch(){
+	       	 			$.get('https://api.covid19api.com/summary',
+                            
+                             function (data){
+                             	// console.log(data['Countries'].length)
+                             	var tval = document.getElementById('tval');
+                             	for(var i=1;i<(data['Countries'].length);i++){
+                             		var x = tval.insertRow();
+                             		x.insertCell(0);
+
+                             		tval.rows[i].cells[0].innerHTML = data['Countries'][i-1]['Country'];
+                             		tval.rows[i].cells[0].style.background = "#e91e63";
+                             		tval.rows[i].cells[0].style.color = "#fff";
+
+                             		x.insertCell(1);
+                             		tval.rows[i].cells[1].innerHTML = data['Countries'][i-1]['TotalConfirmed'];
+                             		tval.rows[i].cells[1].style.background = "#4bb7d8";
+
+                             		x.insertCell(2);
+                             		tval.rows[i].cells[2].innerHTML = data['Countries'][i-1]['TotalRecovered'];
+                             		tval.rows[i].cells[2].style.background = "#f36e23";
+
+
+                             			x.insertCell(3);
+                             		tval.rows[i].cells[3].innerHTML = data['Countries'][i-1]['TotalDeaths'];
+                             		tval.rows[i].cells[3].style.background = "white";
+
+                             			x.insertCell(4);
+                             		tval.rows[i].cells[4].innerHTML = data['Countries'][i-1]['NewRecovered'];
+                             		tval.rows[i].cells[4].style.background = "#ffc107";
+
+                             			x.insertCell(5);
+                             		tval.rows[i].cells[5].innerHTML = data['Countries'][i-1]['NewDeaths'];
+                             		tval.rows[i].cells[5].style.background = "#343a40";
+                             		tval.rows[i].cells[5].style.color = "#fff";
+
+                             	}
+                             }
+                            
+	       	 				)
+	       	 		}
+	       	 	</script>
+       	 </table>
+       </div>
+
+	</section>
+
+<!--application will end-->
+
+<div class="containter scrolltop float-right pr-5">
+	<i class="fa fa-arrow-up"  onclick="topFunction()" id="myBtn" > </i> 
+</div>
+
+
+<footer class="footer">
+	<div class="container">
+	   <div class="row">
+		  <div class="col-md-3 m-b-30">
+			 <div class="footer-title m-t-5 m-b-20 p-b-8">  
+				About Me  
+			 </div>
+			 <p class="white-text">  
+				I am learner who try to learn and devlope something that is helpfull for ourself. let me introduce My self, My name is
+				<b>MD SERAJ AHMAD</b> I am sudent of <b>MANUU CENTAL UNIVERSITY HYDERABAD</b> and ultimate aim is to serve my Nation.
+			 </p>
+		  </div>
+		  <div class="col-md-3 m-b-30">
+			 <div class="footer-title m-t-5 m-b-20 p-b-8">  
+				 Reference  
+			 </div>
+			 <div class="footer-links">  
+				<a href="https://www.w3schools.com/html/default.asp" target="_blank">  
+				w3schools 
+				</a>  
+				<a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank">  
+				 MDN Web Docs  
+				</a>  
+				<a href="https://getbootstrap.com/docs/5.1/getting-started/introduction/" target="_blank">  
+				 Bootstrap  
+				</a>  
+				<a href="https://rapidapi.com/hub" target="_blank">  
+				 Rapidapi  
+				</a>  
+			 </div>
+		  </div>
+		  <div class="col-md-3 m-b-30">
+			 <div class="footer-title m-t-5 m-b-20 p-b-8">  
+				About Future 
+			 </div>
+			 <p class="white-text">  
+				My vision is to help people and save life by providing right and accurate information at one plateform.
+				The future of the website is to attach with backend, with collected data base and make Machine learning project.
+			  </p>
+			 <!-- <div class="footer-links">  
+				<a href="#">  
+				Blog  
+				</a>  
+				<a href="#">  
+				FAQ  
+				</a>  
+				<a href="#">  
+				Terms & conditions  
+				</a>  
+				<a href="#">  
+				Privacy policy  
+				</a>  
+			 </div> -->
+		  </div>
+		  <div class="col-md-3 m-b-30">
+			 <div class="footer-title m-t-5 m-b-20 p-b-8">  
+				Important Link
+			 </div>
+			 <div class="footer-links">  
+				<a href="https://www.cowin.gov.in/">  
+				Cowin Website 
+				</a>  
+				<a href="https://play.google.com/store/apps/details?id=nic.goi.aarogyasetu&hl=en_IN&gl=US">  
+				Aarogya Setu 
+				</a>  
+				<a href="https://www.pmcares.gov.in/en/">  
+				Donate PMcare 
+				</a>  
+				<a href="https://github.com/KrAnubhav">  
+				Follow Me 
+				</a>  
+			 </div>
+			 <div class="footer-social-links m-t-30">
+				<li> 
+					<a href="https://www.facebook.com/anubhav.rai.96155/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"> </i> </a>  
+				   <a href="https://www.instagram.com/anubhav_garg__/" target="_blank"> <i class="fa fa-instagram" aria-hidden="true"> </i> </a>  
+				   <a href="https://www.linkedin.com/in/anubhav-rai-9aa3261a6/" target="_blank"> <i class="fa fa-linkedin" aria-hidden="true"> </i> </a>  
+				   <a href="https://www.youtube.com/channel/UC5AlPvuzqleL_i4eyI2nIdA" target="_blank"> <i class="fa fa-youtube" aria-hidden="true"> </i> </a>  
+				</li>
+			 </div>
+		  </div>
+	   </div>
+	</div>
+ </footer> 
+ 
+ <div class="footer-bottom">  
+	MADE BY MD SERAJ AHMAD
+ </div>
+
+
+</body>
+<style>
+	body{
+		background-color: rgb(213, 237, 241);"
+	}
+</style>
+<script>
+
+mybutton = document.getElementById("myBtn");
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+function scrollFunction() {
+if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+mybutton.style.display = "block";
+} else {
+mybutton.style.display = "none";
+}
+}
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+document.body.scrollTop = 0; // For Safari
+document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+</script>
+
+</html>
+
+
+

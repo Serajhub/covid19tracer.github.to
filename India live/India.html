@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" type="text/css" href="\Covid Resources\css\style.css">
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+  <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+ 
+</head>
+<body onload="fetch();">
+
+<nav class="navbar navbar-expand-lg p-3 nav_style">
+  <a class="navbar-brand pl-5" href="#" >COVID-19</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto pr-5 text-capitalize">
+      <li class="nav-item active">
+        <a class="nav-link" href="C:/Covid%20Resources/index.html#">Home <span class="sr-only">(current)</span></a>
+      </li>
+     <!--  <li class="nav-item">
+        <a class="nav-link" href="#aboutid">about</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#sympid">symptoms</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#preventid">prevention</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#contactid">contact</a>
+      </li> -->
+	  <li class="nav-item">
+        <a class="nav-link" href="C:\Covid Resources\vaccine\index.html" target="_blank" >Vactination</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link" href="#worldlive">World Live</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link" href="#indialive">India Live</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!--application will start-->
+
+
+	<section class="corona_update" >
+		<div class="mb-3">
+			<h2 class="text-center text-uppercase mt-5"> <b>Covid 19 Live Updates Of the India </b> </h2>
+		</div>
+
+          <div class="table-responsive" style="padding: 2% 10% 0% 10% ;" >
+        	<table class="table table-bordered table-striped text-center" id="tval">
+
+	       	 	<tr >
+	       	 		<th>Country</th>
+	       	 		<th>TotalConfirmed</th>
+	       	 		<th>TotalRecoverd</th>
+	       	 		<th>TotalDeaths</th>
+	       	 		<th>NewRecovered</th>
+	       	 		<th>NewDeaths</th>
+	       	 	</tr>
+
+            <!-- <?php
+              $data = file_get_contents('https://api.covid19india.org/data.json');
+              $coranalive = json_decode($data, true);
+              
+              $statescount = count($coranalive['statewise']);
+              $i=1;
+              while($i < $statescount){
+            ?>
+                <tr>
+                  <td> <?php echo $coranalive['statewise'][$i]['lastupdatedtime'] ?></td>
+                  <td> <?php echo $coranalive['statewise'][$i]['state']  ?></td>
+                  <td> <?php echo $coranalive['statewise'][$i]['confirmed'] ?></td>
+                  <td> <?php echo $coranalive['statewise'][$i]['active']  ?></td>
+                  <td> <?php echo $coranalive['statewise'][$i]['recovered'] ?></td>
+                  <td> <?php echo $coranalive['statewise'][$i]['deaths'] ?></td>
+                </tr>
+              
+                 <!-- . "<br>"  ; 
+                 echo $coranalive['statewise'][$i]['state'] . "<br>"  ;
+                echo $coranalive['statewise'][$i]['confirmed'] . "<br>"  ;
+                echo $coranalive['statewise'][$i]['active'] . "<br>"  ;
+                echo $coranalive['statewise'][$i]['recovered'] . "<br>"  ;
+                echo $coranalive['statewise'][$i]['deaths'] . "<br>"  ; 
+                 -->
+            <!--  <?php
+
+                $i++;
+               }
+            ?> -->
+	       	 	<?php
+
+                 $data = file_get_contents('https://api.covid19india.org/data.json');
+
+                 $coronalive = json_decode($data,true);
+
+                 
+                 
+	       	 	?>
+	       	 	 <script type="text/javascript">
+	       	 		function fetch(){
+	       	 			$.get('https://api.covid19india.org/data.json',
+                            
+                             function (data){
+                             	// console.log(data['Countries'].length)
+                             	var tval = document.getElementById('tval');
+                             	for(var i=1;i<(data['statewise'].length);i++){
+                             		var x = tval.insertRow();
+                             		x.insertCell(0);
+
+                             		tval.rows[i].cells[0].innerHTML = data['id="tval"'][i-1]['state'];
+                             		tval.rows[i].cells[0].style.background = "#e91e63";
+                             		tval.rows[i].cells[0].style.color = "#fff";
+
+                             		x.insertCell(1);
+                             		tval.rows[i].cells[1].innerHTML = data['statewise'][i-1]['confirmed'];
+                             		tval.rows[i].cells[1].style.background = "#4bb7d8";
+
+                             		x.insertCell(2);
+                             		tval.rows[i].cells[2].innerHTML = data['statewise'][i-1]['active'];
+                             		tval.rows[i].cells[2].style.background = "#f36e23";
+
+
+                             			x.insertCell(3);
+                             		tval.rows[i].cells[3].innerHTML = data['statewise'][i-1]['deaths'];
+                             		tval.rows[i].cells[3].style.background = "purple";
+
+                             			x.insertCell(4);
+                             		tval.rows[i].cells[4].innerHTML = data['statewise'][i-1]['recovered'];
+                             		tval.rows[i].cells[4].style.background = "#ffc107";
+
+                             			x.insertCell(5);
+                             		tval.rows[i].cells[5].innerHTML = data['statewise'][i-1]['lastupdatedtime'];
+                             		tval.rows[i].cells[5].style.background = "#343a40";
+                             		tval.rows[i].cells[5].style.color = "#fff";
+
+                             	}
+                             }
+                	)
+	       	 		}
+	       	 	</script>
+       	 </table>
+       </div>
+	</section>
+
+<!--application will end-->
+
+
+<footer class="mt-5">
+	<div class=" footer_style bg-dark text-white container-fluid text-center">
+		<p>Created by MD SERAJ AHMAD</p>
+	</div>
+</footer>
+
+
+</body>
+<style>
+	body{
+		background-color: rgb(213, 237, 241);"
+	}
+</style>
+
+</html>
+
+
+
